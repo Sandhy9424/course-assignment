@@ -1,0 +1,92 @@
+/* student dashboard css */
+.nav{
+    display: flex;
+    justify-content: space-around;
+    background-color: gray;
+    border-radius: 12px;
+}
+.nav>div{
+    display: flex;
+    gap: 17%;
+    width: 24%;
+}
+.student-course-list{
+    background-color: aliceblue;
+    margin: 2%;
+    padding: 1%;
+    border-radius: 12px;
+}
+/* course list css */
+.course-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blueviolet;
+    border-radius: 8px;
+    margin: 2%;
+    padding: 2%;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+.course-l{
+    background-color: aqua;
+    margin-left: 19%;
+    margin-top: 4%;
+    padding: 2%;
+    width: 61%;
+    height: 580px;
+    overflow: scroll;
+    border-radius: 31px
+}
+
+.course-l>:first-child{
+    margin-bottom: 2%;
+    gap: 31%;
+}
+.course-l>input{
+    width: 50%;
+    height: 26px;
+    margin-right: 2%;
+}
+button{
+    height:26px ;
+    height: 31px;
+    border-radius: 10px
+}
+
+/* course details css */
+.course-details{
+    background-color: aqua;
+    margin: 4%;
+    padding: 1%;
+    border-radius: 53px;
+    
+}
+.navvv{
+    display: flex;
+    background-color: gray;
+    gap: 23%;
+    align-items: center;
+    padding-left: 2%;
+    border-radius: 13px;
+}
+.course-details p{
+    text-align: left;
+}
+.syllabus{
+    display: flex;
+    align-items: center;
+    gap: 1%;
+}
+.syllabus>p{
+    margin-bottom: 1.5%;
+}
+.syllabus-content{
+    background-color: blueviolet;
+    border-radius: 30px;
+    padding: 0.3%;
+    padding-left: 2%;
+    margin: 2%;
+}
+
+
