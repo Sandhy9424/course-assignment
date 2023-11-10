@@ -15,4 +15,6 @@ app.post("/add-course",controller.addCourse);
 
 app.get("/get-all-course",controller.getAllCourse);
 
+app.post("/change-status",controller.changeStatus);
+
 app.listen(4000,()=>console.log("Srerver at localhost:4000"))

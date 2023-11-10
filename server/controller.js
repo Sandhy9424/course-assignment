@@ -2,7 +2,7 @@ const database=require("./database.js")
 
 const addStudent=(req,res)=>{
     if(req.body.name==null||req.body.email==null){
-        res.send("invalid input");
+        res.status(404).send("invalid input");
     }
   let st={
     id:database.studentList.length+1,
@@ -13,9 +13,9 @@ const addStudent=(req,res)=>{
   }
   try{
   database.studentList.push(st);
-  res.send(st);
+  res.status(200).send(st);
 }catch(err){
-    res.send(err);
+    res.status(404).send(err);
 }
 }
 const getStudent=(req,res)=>{
@@ -29,10 +29,11 @@ const getStudent=(req,res)=>{
     }
   })
   if(student==null){
-    res.send("student not find")
+    res.status(404).send("student not find")
   }
-  res.send(student);
+  res.status(200).send(student);
 }
+
 const addCourse=(req,res)=>{
   try{
     const studentid=req.query.id;
@@ -43,29 +44,73 @@ const addCourse=(req,res)=>{
         student=e;
     }
   })
-const id=req.query.courseid;
+
+  const id=req.query.courseid;
+  let b=false;
+  student.courseList.forEach((e)=>{
+    if(e.id==id){
+      b=true
+      res.status(404).send("err");
+    }
+  })
+
 let course=null
 database.courseList.forEach((e)=>{
     if(e.id==id){
         course=e;
     }
   })
-  student.courseList.push(course)
+  if(b==false){
+  student.courseList.push({...course,status:"InProgress"})
   course.students.push(student.id);
-  res.send(student);
+  }
+  res.status(200).send(student);
+
 }catch(err){
-  res.send("err");
+  res.status(404).send( err);
 }
 }
 const getAllCourse=(req,res)=>{
-    res.send(database.courseList);
+    res.status(200).send(database.courseList);
+}
+
+const changeStatus=(req,res)=>{
+  try{
+    const studentid=req.query.id;
+  let student=null;
+
+  database.studentList.forEach((e)=>{
+    if(e.id==studentid){
+        student=e;
+    }
+  })
+     if(student==null){
+      res.status(404).send("err");
+     }
+     const id=req.query.courseid;
+let course=null
+student.courseList.forEach((e)=>{
+    if(e.id==id){
+        course=e;
+    }
+  })
+  if(course==null){
+    res.status(404).send("err");
+   }
+     course.status="completed";
+     res.status(200).send(student)     
+}catch(err){
+  res.status(404).send("err")
+}
+
 }
 
 let controller={
    "getStudent":getStudent,
    "addStudent":addStudent,
    "addCourse":addCourse,
-   "getAllCourse":getAllCourse
+   "getAllCourse":getAllCourse,
+   "changeStatus":changeStatus
 }
 
 module.exports=controller;

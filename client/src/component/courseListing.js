@@ -44,9 +44,13 @@ function getAllCourse(){
     let courseid=e.target.parentNode.children[0].innerText;
 
    axios.post(`http://localhost:4000/add-course?id=${Student.id}&courseid=${courseid}`).then((res)=>{
+    if(res.data=="err"){
+        alert("course alredy Subscribed")
+        return;
+    }
     dispatch(changeStudent(res.data))
      alert("course subscribed successfully")
-    console.log(res.data)}).catch((err)=>console.log(err))
+    console.log(res.data)}).catch((err)=>  alert("course alredy Subscribed"))
    console.log(Student,courseid)
     
  }
